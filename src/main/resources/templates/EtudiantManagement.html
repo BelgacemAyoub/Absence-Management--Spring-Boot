@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="pageStandard">
+<head>
+<meta charset="utf-8" />
+<title>Etudiant</title>
+
+</head>
+<body>
+
+
+	<div layout:fragment="content"> 
+	  
+		<p></p>
+		<div class="container spacer">
+			<h3>List des etudiants</h3>
+
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>matricule</th>
+						<th>nom</th>
+						<th>prenom</th>
+						<th>email</th>
+						<th>date_naiss</th>
+						<th>classe</th>
+					</tr>
+				</thead>
+				<tbody>
+
+					<tr th:each="e:${etudiants}">
+						<td th:text="${e.matricule}"></td>
+						<td th:text="${e.nom}"></td>
+						<td th:text="${e.prenom}"></td>
+						<td th:text="${e.email}"></td>
+						<td th:text="${e.date_naiss}"></td>
+						<td th:text="${e.classe.getLabel()}"></td>
+ 						<td><a th:href="@{/FormAbsences/(matricule=${e.matricule},id=${e.classe.getId()}) }">Absence</a></td> 
+ 						<td><a th:href="@{/nbrAbsEtudiantParMatiere(matricule=${e.matricule},id=${e.classe.getId()})}" >Voir absence par matiére</a></td>
+ 						
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+
+	</div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="pageStandard">
+<head>
+<meta charset="utf-8" />
+<title>Matiere</title>
+
+</head>
+<body>
+
+
+	<div layout:fragment="content">
+		<div class="container spacer">
+			<form th:action="@{/matiere}" method="get">
+				<label>Mot Clé :</label>
+				<input type="text" name="motCle" th:value="${motCle}"/> 
+				<button class="btn btn-primary">Chercher</button>
+			</form>
+			<form th:action="@{/FormMatiere}" method="get"> 
+				<button class="btn btn-primary col-md-offset-10">Ajouter Matiere</button>
+			</form>
+		
+		</div>
+		<p></p>
+		<div class="container spacer">
+			<h3>List des matieres</h3>
+
+			<table class="table table-striped">
+			
+				<thead>
+					<tr>
+						
+						<th>id</th>
+						<th>label</th>
+						<th>Nbr_h</th>
+						<th>Seuil_abs</th>
+					</tr>
+				</thead>
+				<tbody>
+
+					<tr th:each="m:${listMatieres}">
+						<td th:text="${m.id}"></td>
+						<td th:text="${m.label}"></td>
+						<td th:text="${m.Nbr_h}"></td>
+						<td th:text="${m.Seuil_abs}"></td>
+						<td><a th:href="@{/EditMatiere(id=${m.id})}">Edit</a></td>
+						<td><a onclick="return confirm ('Etes vous sure ?')"
+						th:href="@{/DeleteMatiere(id=${m.id},page=${pageCourante},size=${size},motCle=${motCle})}">Delete</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="container">
+			<ul class="nav nav-pills">
+				<li class="nav-item"
+					th:class="${pageCourante}==${status.index}?'active':''"
+					th:each="pa,status:${pages}"><a class="nav-link"
+					th:href="@{/matiere(page=${status.index},size=${size},motCle=${motCle})}"
+					th:text="${status.index}"></a></li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

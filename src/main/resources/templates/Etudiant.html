@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="pageStandard">
+<head>
+<meta charset="utf-8" />
+<title>Etudiant</title>
+
+</head>
+<body>
+
+
+	<div layout:fragment="content"> 
+	  
+		<div class="container spacer">
+			<form th:action="@{/index}" method="get">
+			<div class="form-group">
+				<label>Mot Clé :</label>
+				<input type="text" name="motCle" th:value="${motCle}"/> 
+				<button class="btn btn-primary">Chercher</button>
+			</div>
+			</form>
+		</div>
+		<p></p>
+		<div class="container spacer">
+			<h3>List des etudiants</h3>
+
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>matricule</th>
+						<th>nom</th>
+						<th>prenom</th>
+						<th>email</th>
+						<th>date_naiss</th>
+						<th>classe</th>
+					</tr>
+				</thead>
+				<tbody>
+
+					<tr th:each="e:${listEtudiants}">
+						<td th:text="${e.matricule}"></td>
+						<td th:text="${e.nom}"></td>
+						<td th:text="${e.prenom}"></td>
+						<td th:text="${e.email}"></td>
+						<td th:text="${e.date_naiss}"></td>
+						<td th:text="${e.classe.getLabel()}"></td>
+						<td><a th:href="@{/EditEtudiant/(matricule=${e.matricule})}">Edit</a></td>
+						<td><a onclick="return confirm ('Etes vous sure ?')"
+						th:href="@{/delete(matricule=${e.matricule},page=${pageCourante},size=${size},motCle=${motCle})}">Delete</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="container">
+			<ul class="nav nav-pills">
+				<li class="nav-item"
+					th:class="${pageCourante}==${status.index}?'active':''"
+					th:each="pa,status:${pages}"><a class="nav-link"
+					th:href="@{/index(page=${status.index},size=${size},motCle=${motCle})}"
+					th:text="${status.index}"></a></li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

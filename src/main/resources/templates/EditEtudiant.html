@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="pageStandard">
+<head>
+<meta charset="utf-8" />
+
+<title>FormEtudiant</title>
+ 
+</head>
+<body>
+	<div layout:fragment="content">
+	<div class="container spacer col-md-6 col-xs-12 spacer col-md-offset-3">
+		<div class="panel panel-default">
+			<div class="panel-heading">Saisie d'un etudiant</div>
+			<div class="panel-body">
+				<form th:action="@{/UpdateEtudiant}" method="post" th:object = "${etudiant}" >     
+					
+				    <div class="form-group">
+						<label class="control-label">Matricule:</label>
+						<input type="text" class="form-control" th:field= "*{matricule}" readonly="readonly" /> 
+					    <span class="text-danger" th:errors="${etudiant.matricule}"></span>
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label">Nom:</label>
+						<input type="text" class="form-control" th:field= "*{nom}" th:value="${etudiant.nom}" /> 
+					    <span class="text-danger" th:errors="${etudiant.nom}"></span>
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label">Prenom:</label>
+						<input type="text" class="form-control" th:field= "*{prenom}" th:value="${etudiant.prenom}" />
+						<span class="text-danger" th:errors="${etudiant.prenom}"></span>																									
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label">Email:</label>
+						<input type="text" class="form-control" th:field= "*{email}" th:value="${etudiant.email}" />
+						<span class="text-danger" th:errors="${etudiant.email}"></span>																									
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label">Date_Naiss:</label>
+						<input type="Date" class="form-control" name="date_naiss" th:value="${etudiant.date_naiss}" />
+						<span class="text-danger" th:errors="${etudiant.date_naiss}"></span>																									
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label" >Classe</label>																			
+					  	<select name ="classe" class="form-control"  th:value=${etudiant.classe} >
+					  	  
+					  	  <option th:value="${etudiant.classe.getId()}" th:text= "${etudiant.classe.getLabel()}"></option>
+						  <option th:each="c:${listClasses}" th:value = "${c.id}" th:text = "${c.label}"></option>	  
+						  
+						</select>																	
+					</div>
+
+					<div>
+						<button type="submit" class="btn btn-primary">Save</button>
+					</div>	
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="pageStandard">
+<head>
+<meta charset="utf-8" />
+<title>Classe</title>
+
+</head>
+<body>
+
+
+	<div layout:fragment="content">
+		<div class="container spacer">
+			<form th:action="@{/classe}" method="get">
+				<label>Mot Clé :</label>
+				<input type="text" name="motCle" th:value="${motCle}"/> 
+				<button class="btn btn-primary">Chercher</button>
+			</form>
+			<form th:action="@{/FormClasse}" method="get"> 
+				<button class="btn btn-primary col-md-offset-10">Ajouter Classe</button>
+			</form>
+		
+		</div>
+		<p></p>
+		<div class="container spacer">
+			<h3>List des classes</h3>
+
+			<table class="table table-striped">
+			
+				<thead>
+					<tr>
+						
+						<th>id</th>
+						<th>label</th>
+						<th>Nom comp</th>
+					</tr>
+				</thead>
+				<tbody>
+
+					<tr th:each="c:${listClasses}">
+						<td th:text="${c.id}"></td>
+						<td th:text="${c.label}"></td>
+						<td th:text="${c.nom_comp}"></td>
+						<td><a th:href="@{/EditClasse(id=${c.id})}">Edit</a></td>
+						<td><a onclick="return confirm ('Etes vous sure ?')"
+						th:href="@{/DeleteClasse(id=${c.id},page=${pageCourante},size=${size},motCle=${motCle})}">Delete</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="container">
+			<ul class="nav nav-pills">
+				<li class="nav-item"
+					th:class="${pageCourante}==${status.index}?'active':''"
+					th:each="pa,status:${pages}"><a class="nav-link"
+					th:href="@{/classe(page=${status.index},size=${size},motCle=${motCle})}"
+					th:text="${status.index}"></a></li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

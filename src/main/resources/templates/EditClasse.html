@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="pageStandard">
+<head>
+<meta charset="utf-8" />
+
+<title>FormClasse</title>
+ 
+</head>
+<body>
+	<div layout:fragment="content">
+	<div class="container spacer col-md-6 col-xs-12 spacer col-md-offset-3">
+		<div class="panel panel-default">
+			<div class="panel-heading">Saisie d'un classe</div>
+			<div class="panel-body">
+				<form th:action="@{/UpdateClasse}" method="post" th:object = "${classe}" >     
+					
+				    <div class="form-group">
+						<label class="control-label">Id:</label>
+						<input type="text" class="form-control" th:field= "*{id}" readonly="readonly" /> 
+					    <span class="text-danger" th:errors="${classe.id}"></span>
+					</div>
+				    
+				    <div class="form-group">
+						<label class="control-label">Label:</label>
+						<input type="text" class="form-control" th:field= "*{label}" /> 
+					    <span class="text-danger" th:errors="${classe.label}"></span>
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label">Nom comp:</label>
+						<input type="text" class="form-control" th:field= "*{nom_comp}" th:value="${classe.nom_comp}" /> 
+					    <span class="text-danger" th:errors="${classe.nom_comp}"></span>
+					</div>	
+
+					<div>
+						<button type="submit" class="btn btn-primary">Save</button>
+					</div>	
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

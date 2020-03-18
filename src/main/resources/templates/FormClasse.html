@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="pageStandard">
+<head>
+<meta charset="utf-8" />
+
+<title>FormClasse</title>
+ 
+</head>
+<body>
+	<div layout:fragment="content">
+	<div class="container spacer col-md-6 col-xs-12 spacer col-md-offset-3">
+		<div class="panel panel-default">
+			<div class="panel-heading">Saisie d'un Classe</div>
+			<div class="panel-body">
+				<form th:action="@{/SaveClasse}" method="post" th:object = "${classe}" >  
+				    <!-- quand je vais valider le formulaire je fait appele à une action que je vais appeler save --> 
+					<!-- th:object = "${classe}" tous les champs que je vais saisir dans le formulaire il concert l'objet classe -->
+										
+					<div class="form-group">
+						<label class="control-label">Label:</label>
+						<input type="text" class="form-control" th:field= "*{label}" /> 
+						<!-- (champ nom ça concerne l'objet classe)=> il faudrait donner les memes noms que les attributs de la classe Classe -->	
+					    <span class="text-danger" th:errors="${classe.label}"></span>
+						<!-- c'est à dire dans la collection des erreurs si il ya une erreur qui concerne le champ produit.designation qui va me l'affiché ici -->																						
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label">Nom_Comp:</label>
+						<input type="text" class="form-control" th:field= "*{nom_comp}"  />
+						<span class="text-danger" th:errors="${classe.nom_comp}"></span>																									
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label">Matiere</label>																			
+					  	<select th:field= "*{matieres}" class="form-control"  th:value="${classe.matieres}" multiple="multiple" >
+						  <option th:each="o:${listMatieres}" th:value = "${o.id}" th:text = "${o.label}"></option>	  
+						</select>																	
+					</div>
+					
+					<div>
+						<button type="submit" class="btn btn-primary">Save</button>
+					</div>	
+				</form>
+				
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

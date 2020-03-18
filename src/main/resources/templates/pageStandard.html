@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html 
+xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="utf-8"/>
+<title>Gestion des absences</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+		
+</head>
+<body>
+	<header>
+		<div class="navbar navbar-default">  
+			<div class="container-fluid">   
+				<ul class="nav navbar-nav">  
+					<li><a th:href="@{/index}">Home</a></li>     
+					<li><a th:href="@{/FormEtudiant}">Etudiants</a></li>
+					<li><a th:href="@{/classe}">Classes</a></li>
+					<li><a th:href="@{/matiere}">Matieres</a></li>
+					<li><a th:href="@{/absence}">Absence Management</a></li>  	
+				</ul>
+			</div>
+		</div>
+	</header>
+	<section layout:fragment="content">
+	</section>
+	<footer class="navbar-fixed-bottom">
+			<hr />
+			<div class="container">
+				<small> Copyright @2019 </small>
+			</div>
+	</footer>
+	
+
+</body>
+</html>

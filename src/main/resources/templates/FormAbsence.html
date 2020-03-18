@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="pageStandard">
+<head>
+<meta charset="utf-8" />
+
+<title>FormEtudiant</title>
+ 
+</head>
+<body>
+	<div layout:fragment="content">
+	<div class="container spacer col-md-6 col-xs-12 spacer col-md-offset-3">
+		<div class="panel panel-default">
+			<div class="panel-heading">Saisie d'un absence</div>
+			<div class="panel-body">
+				<form th:action="@{/SaveAbsence}" method="post" >  
+										
+					<div class="form-group">
+						<label class="control-label">Classe:</label>
+						<input type="text" class="form-control" name= "classe" th:value = "${classe.id}" readonly="readonly" /> 
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label">Etudiant:</label>
+						<input type="text" class="form-control" name="etudiant" th:value = "${etudiant.matricule}" readonly="readonly"  />																								
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label">Date Séance:</label>
+						<input type="date" class="form-control" name="date_seance" />
+						<span class="text-danger" th:errors="${emc.date_seance}"></span>																									
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label">Séance:</label>
+						<input type="number" name="nbre_seance" class="form-control" value="0" placeholder="Taper 1 ou 2" />
+						<span class="text-danger" th:errors="${emc.nbre_seance}"></span>																									
+					</div>
+					
+					<div class="form-group">
+						<label for="sel1">Choisir une matiere :</label> 
+						
+							<select name="matiere" class="form-control" th:value="emc.matiere">
+								<option th:value="0">-- Selectionner un matiere --</option>
+								<option th:each="matiere : ${matieres}" th:value="${matiere.id}" th:text="${matiere.label}"></option>
+							</select>
+							
+					</div>
+					
+					<div>
+							<button type="submit" class="btn btn-primary">Save</button>
+							<a th:href="@{/AfficherEtudiants(classe= ${classe.id})}" class="btn btn-primary">Annuler</a>
+					</div>
+					
+<!-- 					<div class="form-group"> -->
+<!-- 						<label class="control-label">Matiere</label>																			 -->
+<!-- 					  	<select th:field= "*{classe}" class="form-control"  th:value=${etudiant.classe} > -->
+<!-- 					  	  <option th:value="0">-- Selectionner un classe --</option> -->
+<!-- 						  <option th:each="c:${listClasses}" th:value = "${c.id}" th:text = "${c.label}"></option>	   -->
+<!-- 						</select>																	 -->
+<!-- 					</div> -->
+
+<!-- 					<div> -->
+<!-- 						<button type="submit" class="btn btn-primary">Save</button> -->
+<!-- 					</div>	 -->
+				</form>
+				
+			</div>
+		</div>
+	</div>
+	
+</div>
+</body>
+</html>

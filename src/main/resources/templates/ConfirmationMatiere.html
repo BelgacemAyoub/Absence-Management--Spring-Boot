@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="pageStandard">
+<head>
+<meta charset="utf-8" />
+<title>Confirmation</title>
+</head>
+<body>
+	<div layout:fragment="content">
+	<div class="container">
+		<div class="panel panel-default">
+			<div class="panel-heading">Confirmation</div>
+			<div class="panel-body">
+				<div class="form-group">
+					<label>Id:</label>
+					<label th:text="${matiere.id}" ></label>
+				</div>
+				<div class="form-group">
+					<label>Label:</label>
+					<label th:text="${matiere.label}"></label>
+				</div>
+				<div class="form-group">
+					<label>Nbr_h:</label>
+					<label th:text="${matiere.Nbr_h}"></label>
+				</div>
+				<div class="form-group">
+					<label>Seuil_abs:</label>
+					<label th:text="${matiere.Seuil_abs}"></label>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

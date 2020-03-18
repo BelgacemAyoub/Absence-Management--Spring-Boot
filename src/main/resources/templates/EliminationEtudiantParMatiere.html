@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="pageStandard">
+
+<head>
+<meta charset="utf-8" />
+</head>
+<body>
+	<div layout:fragment="content">
+		<div
+			class="container spacer col-md-6 col-xs-12 spacer col-md-offset-3">
+			<div class="panel panel-default">
+				<div class="panel-heading">Rapport d'absence</div>
+				<div class="panel-body">
+
+					<form>
+
+						<div>
+							<br>
+
+							<div>
+								<label class="control-label">Nombre d'heure d'absence :</label>
+								<input class="form-control" type="text" th:value="${nbr_heure}" readonly="readonly">
+							</div>
+							<p></p>
+							<div>
+								<label class="control-label">Décision :</label> <input
+									class="form-control" type="text" th:value="${eliminatoire}"
+									readonly="readonly">
+							</div>
+							<p></p>
+							<div>
+								<label class="control-label">Nombre d'heure total
+									d'absence pour cette matiére :</label> <input class="form-control"
+									type="text" name ="nbr_heure_groupe" th:value="${nbr_heure_groupe}" readonly="readonly">
+							</div>
+						</div>
+
+					</form>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="pageStandard">
+<head>
+<meta charset="utf-8" />
+
+<title>FormEtudiant</title>
+ 
+</head>
+<body>
+	<div layout:fragment="content">
+	<div class="container spacer col-md-6 col-xs-12 spacer col-md-offset-3">
+		<div class="panel panel-default">
+			<div class="panel-heading">Saisie d'un etudiant</div>
+			<div class="panel-body">
+				<form th:action="@{/SaveEtudiant}" method="post" th:object = "${etudiant}" >  
+				    <!-- quand je vais valider le formulaire je fait appele à une action que je vais appeler save --> 
+					<!-- th:object = "${etudiant}" tous les champs que je vais saisir dans le formulaire il concert l'objet etudiant -->
+										
+					<div class="form-group">
+						<label class="control-label">Nom:</label>
+						<input type="text" class="form-control" th:field= "*{nom}" /> 
+						<!-- (champ nom ça concerne l'objet etudiant)=> il faudrait donner les memes noms que les attributs de la classe Etudiant -->	
+					    <span class="text-danger" th:errors="${etudiant.nom}"></span>
+						<!-- c'est à dire dans la collection des erreurs si il ya une erreur qui concerne le champ produit.designation qui va me l'affiché ici -->																						
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label">Prenom:</label>
+						<input type="text" class="form-control" th:field= "*{prenom}"   />
+						<span class="text-danger" th:errors="${etudiant.prenom}"></span>																									
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label">Email:</label>
+						<input type="text" class="form-control" th:field= "*{email}"  />
+						<span class="text-danger" th:errors="${etudiant.email}"></span>																									
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label">Date_Naiss:</label>
+						<input type="date" name="date_naiss" class="form-control" />
+						<span class="text-danger" th:errors="${etudiant.date_naiss}"></span>																									
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label">Classe</label>																			
+					  	<select th:field= "*{classe}" class="form-control"  th:value=${etudiant.classe} >
+					  	  <option th:value="0">-- Selectionner un classe --</option>
+						  <option th:each="c:${listClasses}" th:value = "${c.id}" th:text = "${c.label}"></option>	  
+						</select>																	
+					</div>
+
+					<div>
+						<button type="submit" class="btn btn-primary">Save</button>
+					</div>	
+				</form>
+				
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
