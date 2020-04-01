@@ -15,15 +15,12 @@
 			<div class="panel-heading">Saisie d'un Classe</div>
 			<div class="panel-body">
 				<form th:action="@{/SaveClasse}" method="post" th:object = "${classe}" >  
-				    <!-- quand je vais valider le formulaire je fait appele à une action que je vais appeler save --> 
 					<!-- th:object = "${classe}" tous les champs que je vais saisir dans le formulaire il concert l'objet classe -->
 										
 					<div class="form-group">
 						<label class="control-label">Label:</label>
 						<input type="text" class="form-control" th:field= "*{label}" /> 
-						<!-- (champ nom ça concerne l'objet classe)=> il faudrait donner les memes noms que les attributs de la classe Classe -->	
-					    <span class="text-danger" th:errors="${classe.label}"></span>
-						<!-- c'est à dire dans la collection des erreurs si il ya une erreur qui concerne le champ produit.designation qui va me l'affiché ici -->																						
+					        <span class="text-danger" th:errors="${classe.label}"></span>																						
 					</div>
 					
 					<div class="form-group">
