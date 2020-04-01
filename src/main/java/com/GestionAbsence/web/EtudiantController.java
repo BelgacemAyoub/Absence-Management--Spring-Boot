@@ -1,15 +1,6 @@
 package com.GestionAbsence.web;
 
-
-/* on n'a pas besoin de déploier DispatcherServlet dans un projet 
- * spring boot parce que déja déploier par défaut par contre il faut
- * déclarer dispatcherServlet dans un projet web dynamique dans le 
- * fichier web.xml.  
- */
-
-
 import java.util.Collection;
-
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
@@ -51,7 +42,7 @@ public class EtudiantController {
 	  public String index (Model model,
 	      @RequestParam(name = "page", defaultValue = "0") int p,
 	      @RequestParam(name = "size", defaultValue = "8") int s,
-	      @RequestParam(name = "motCle", defaultValue = "") String mc) {     		// on va lire le paramétre motCle et on va l'affecte à mc 
+	      @RequestParam(name = "motCle", defaultValue = "") String mc) {     		
 		  
 		  Pageable pageable = PageRequest.of(p, s);
 		  Page<Etudiant>pageEtudiants = etudiantRepository.chercher("%"+mc+"%", pageable);
