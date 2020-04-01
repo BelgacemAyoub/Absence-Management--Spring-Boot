@@ -28,7 +28,7 @@ public class MatiereController {
 	  public String index (Model model,
 	      @RequestParam(name = "page", defaultValue = "0") int p,
 	      @RequestParam(name = "size", defaultValue = "8") int s,
-	      @RequestParam(name = "motCle", defaultValue = "") String mc) {     		// on va lire le paramétre motCle et on va l'affecte à mc 
+	      @RequestParam(name = "motCle", defaultValue = "") String mc) {     		
 		  
 		  Pageable pageable = PageRequest.of(p, s);
 		  Page<Matiere>pageMatieres = matiereRepository.chercher("%"+mc+"%", pageable);
