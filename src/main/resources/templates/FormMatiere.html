@@ -14,16 +14,11 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">Saisie d'un Matiere</div>
 			<div class="panel-body">
-				<form th:action="@{/SaveMatiere}" method="post" th:object = "${matiere}" >  
-				    <!-- quand je vais valider le formulaire je fait appele à une action que je vais appeler save --> 
-					<!-- th:object = "${classe}" tous les champs que je vais saisir dans le formulaire il concert l'objet classe -->
-										
+				<form th:action="@{/SaveMatiere}" method="post" th:object = "${matiere}" > 		
 					<div class="form-group">
 						<label class="control-label">Label:</label>
 						<input type="text" class="form-control" th:field= "*{label}" /> 
-						<!-- (champ nom ça concerne l'objet classe)=> il faudrait donner les memes noms que les attributs de la classe Classe -->	
-					    <span class="text-danger" th:errors="${matiere.label}"></span>
-						<!-- c'est à dire dans la collection des erreurs si il ya une erreur qui concerne le champ produit.designation qui va me l'affiché ici -->																						
+					        <span class="text-danger" th:errors="${matiere.label}"></span>																						
 					</div>
 					
 					<div class="form-group">
@@ -37,8 +32,6 @@
 						<input type="text" class="form-control" th:field= "*{Seuil_abs}"   />
 						<span class="text-danger" th:errors="${matiere.Seuil_abs}"></span>																									
 					</div>
-					
-
 					
 					<div>
 						<button type="submit" class="btn btn-primary">Save</button>
